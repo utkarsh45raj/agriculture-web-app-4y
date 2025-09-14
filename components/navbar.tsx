@@ -31,7 +31,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="relative">
               <Wheat className="h-8 w-8 text-primary animate-grow" />
-              <div className="absolute inset-0 rounded-full animate-pulse-green" />
+              <div className="absolute inset-0" />
             </div>
             <span className="text-xl font-bold text-primary group-hover:text-secondary transition-colors">
               Kisan Mitra
