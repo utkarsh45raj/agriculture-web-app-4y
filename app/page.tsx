@@ -8,6 +8,7 @@ import { MessageCircle, Cloud, Sprout, ArrowRight, Users, TrendingUp, Shield, Ta
 import { useTranslation } from "@/hooks/use-translation"
 import Link from "next/link"
 
+// PhotoCarousel component for the Social Proof section
 const carouselData = [
   {
     src: "/bimayojna.png",
