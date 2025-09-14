@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSmart - Smart Agriculture Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-seedling"></i>
+                <span>AgriSmart</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="soil-health.html" class="nav-link">Soil Health</a></li>
+                <li><a href="pest-detection.html" class="nav-link">Pest Detection</a></li>
+                <li><a href="market-prices.html" class="nav-link">Market Prices</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Smart Agriculture Solutions</h1>
+                <p class="hero-subtitle">Empowering farmers with AI-driven insights for better crop management</p>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <!-- Chatbot Section -->
+            <section class="dashboard-card chatbot-section">
+                <div class="card-header">
+                    <h2><i class="fas fa-robot"></i> AI Assistant</h2>
+                    <button id="voiceToggle" class="voice-toggle">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div class="chatbot-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                Hello! I'm your AI agriculture assistant. How can I help you today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask about crops, weather, or farming..." />
+                        <button id="sendMessage" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <button id="voiceInput" class="voice-btn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weather Widget -->
+            <section class="dashboard-card weather-section">
+                <div class="card-header">
+                    <h2><i class="fas fa-cloud-sun"></i> Weather</h2>
+                    <button id="locationBtn" class="location-btn">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </button>
+                </div>
+                <div class="weather-container">
+                    <div class="current-weather">
+                        <div class="weather-main">
+                            <div class="temperature">25°C</div>
+                            <div class="weather-desc">Partly Cloudy</div>
+                        </div>
+                        <div class="weather-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span>Humidity</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Wind</span>
+                            <span>12 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Rainfall</span>
+                            <span>2mm</span>
+                        </div>
+                    </div>
+                    <div class="forecast">
+                        <h3>7-Day Forecast</h3>
+                        <div class="forecast-grid" id="forecastGrid">
+                            <!-- Forecast items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Crop Advisory -->
+            <section class="dashboard-card advisory-section">
+                <div class="card-header">
+                    <h2><i class="fas fa-leaf"></i> Crop Advisory</h2>
+                </div>
+                <div class="advisory-container">
+                    <div class="location-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="currentLocation">Detecting location...</span>
+                    </div>
+                    <div class="advisory-content">
+                        <div class="advisory-item priority-high">
+                            <div class="advisory-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="advisory-text">
+                                <h4>Pest Alert</h4>
+                                <p>High risk of aphid infestation in wheat crops. Consider preventive measures.</p>
+                            </div>
+                        </div>
+                        <div class="advisory-item priority-medium">
+                            <div class="advisory-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="advisory-text">
+                                <h4>Irrigation Reminder</h4>
+                                <p>Optimal time for watering tomato crops is early morning (5-7 AM).</p>
+                            </div>
+                        </div>
+                        <div class="advisory-item priority-low">
+                            <div class="advisory-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="advisory-text">
+                                <h4>Planting Season</h4>
+                                <p>Good time to plant winter vegetables like cabbage and cauliflower.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

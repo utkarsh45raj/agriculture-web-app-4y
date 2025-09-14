@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pest Detection - AgriSmart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-seedling"></i>
+                <span>AgriSmart</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="soil-health.html" class="nav-link">Soil Health</a></li>
+                <li><a href="pest-detection.html" class="nav-link active">Pest Detection</a></li>
+                <li><a href="market-prices.html" class="nav-link">Market Prices</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Pest & Disease Detection</h1>
+                <p class="hero-subtitle">Upload plant images for AI-powered pest and disease identification</p>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-camera"></i> Image Upload</h2>
+                </div>
+                
+                <div class="upload-area" id="imageUploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Upload Plant Image</h3>
+                    <p>Take a photo or upload an image of the affected plant</p>
+                    <div class="upload-buttons">
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('imageInput').click()">
+                            <i class="fas fa-upload"></i>
+                            Choose Image
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cameraBtn">
+                            <i class="fas fa-camera"></i>
+                            Take Photo
+                        </button>
+                    </div>
+                </div>
+
+                <div id="imagePreview" class="image-preview" style="display: none;">
+                    <img id="previewImg" alt="Uploaded image">
+                    <div class="image-actions">
+                        <button type="button" class="btn btn-primary" id="analyzeBtn">
+                            <i class="fas fa-search"></i>
+                            Analyze Image
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="removeImageBtn">
+                            <i class="fas fa-trash"></i>
+                            Remove
+                        </button>
+                    </div>
+                </div>
+
+                <div id="analysisProgress" class="analysis-progress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p>Analyzing image... Please wait</p>
+                </div>
+            </section>
+
+            <section class="dashboard-card" id="detectionResults" style="display: none;">
+                <div class="card-header">
+                    <h2><i class="fas fa-bug"></i> Detection Results</h2>
+                </div>
+                <div id="resultsContainer">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Camera Modal -->
+        <div id="cameraModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Take Photo</h3>
+                    <button type="button" class="close-btn" id="closeCameraBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <video id="cameraVideo" autoplay></video>
+                    <canvas id="cameraCanvas" style="display: none;"></canvas>
+                    <div class="camera-controls">
+                        <button type="button" class="btn btn-primary" id="captureBtn">
+                            <i class="fas fa-camera"></i>
+                            Capture
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="pest-detection.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

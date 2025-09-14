@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Prices - AgriSmart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-seedling"></i>
+                <span>AgriSmart</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="soil-health.html" class="nav-link">Soil Health</a></li>
+                <li><a href="pest-detection.html" class="nav-link">Pest Detection</a></li>
+                <li><a href="market-prices.html" class="nav-link active">Market Prices</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Market Prices</h1>
+                <p class="hero-subtitle">Get real-time mandi prices for your crops and location</p>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-map-marker-alt"></i> Market Selection</h2>
+                </div>
+                
+                <div class="market-filters">
+                    <div class="form-group">
+                        <label for="stateSelect">State</label>
+                        <select id="stateSelect" class="form-select">
+                            <option value="">Select State</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="uttar-pradesh">Uttar Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="gujarat">Gujarat</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mandiSelect">Mandi</label>
+                        <select id="mandiSelect" class="form-select">
+                            <option value="">Select Mandi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cropSelect">Crop</label>
+                        <select id="cropSelect" class="form-select">
+                            <option value="">Select Crop</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="rice">Rice</option>
+                            <option value="corn">Corn</option>
+                            <option value="tomato">Tomato</option>
+                            <option value="onion">Onion</option>
+                            <option value="potato">Potato</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="searchPricesBtn">
+                        <i class="fas fa-search"></i>
+                        Search Prices
+                    </button>
+                </div>
+            </section>
+
+            <section class="dashboard-card" id="pricesSection" style="display: none;">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-line"></i> Current Prices</h2>
+                    <button type="button" class="btn btn-secondary" id="refreshPricesBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                </div>
+                <div id="pricesContainer">
+                    <!-- Prices will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="dashboard-card" id="trendsSection" style="display: none;">
+                <div class="card-header">
+                    <h2><i class="fas fa-trending-up"></i> Price Trends</h2>
+                </div>
+                <div class="trends-container">
+                    <div class="trend-chart">
+                        <canvas id="priceChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="trend-summary">
+                        <div class="trend-item">
+                            <span class="trend-label">7-Day Change</span>
+                            <span class="trend-value positive" id="weeklyChange">+5.2%</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-label">Monthly Change</span>
+                            <span class="trend-value negative" id="monthlyChange">-2.1%</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-label">Highest Price</span>
+                            <span class="trend-value" id="highestPrice">₹2,850</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-label">Lowest Price</span>
+                            <span class="trend-value" id="lowestPrice">₹2,650</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-bell"></i> Price Alerts</h2>
+                </div>
+                <div class="alerts-container">
+                    <form id="alertForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="alertCrop">Crop</label>
+                                <select id="alertCrop" class="form-select">
+                                    <option value="wheat">Wheat</option>
+                                    <option value="rice">Rice</option>
+                                    <option value="corn">Corn</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="targetPrice">Target Price (₹/quintal)</label>
+                                <input type="number" id="targetPrice" class="form-input" placeholder="2500">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Set Alert
+                        </button>
+                    </form>
+                    <div id="activeAlerts" class="active-alerts">
+                        <!-- Active alerts will be displayed here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="market-prices.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
