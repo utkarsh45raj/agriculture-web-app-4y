@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ImageUpload } from "@/components/image-upload"
 import { PestAnalysisResults } from "@/components/pest-analysis-results"
+import { Shield } from "lucide-react"
 
 interface Detection {
   name: string
@@ -108,10 +109,13 @@ export default function PestDetectionPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-8 animate-fade-in-up">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">Pest & Disease Detection</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+    <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <div className="text-center mb-12 animate-fade-in-up">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent flex items-center justify-center gap-3">
+          <Shield className="h-10 w-10 text-green-600" />
+          Pest & Disease Detection
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
           Upload a photo of your plant to identify pests, diseases, and nutrient deficiencies. Get instant treatment
           recommendations powered by AI.
         </p>
@@ -123,10 +127,12 @@ export default function PestDetectionPage() {
         ) : (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-primary">Analysis Complete</h2>
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+                Analysis Complete
+              </h2>
               <button
                 onClick={handleNewAnalysis}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium px-4 py-2 rounded-lg hover:bg-green-50 dark:hover:bg-green-950"
               >
                 ← Analyze New Image
               </button>

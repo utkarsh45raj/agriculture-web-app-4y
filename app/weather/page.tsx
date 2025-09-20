@@ -165,12 +165,12 @@ export default function WeatherPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
-          <Cloud className="h-8 w-8" />
+      <div className="text-center mb-12 animate-fade-in-up">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent flex items-center justify-center gap-3">
+          <Cloud className="h-10 w-10 text-green-600" />
           {t("weatherTitle")}
         </h1>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
           Real-time weather data and AI-powered farming insights for {weatherData.location}
         </p>
       </div>
@@ -185,10 +185,9 @@ export default function WeatherPage() {
 
         <TabsContent value="current" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Current Weather Card */}
-            <Card className="md:col-span-2">
+            <Card className="md:col-span-2 bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950 dark:to-sky-950 border-2 border-blue-100 dark:border-blue-800 shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
+                <CardTitle className="flex items-center justify-between text-blue-700 dark:text-blue-400">
                   <span>Current Conditions</span>
                   {getWeatherIcon(weatherData.current.condition)}
                 </CardTitle>
@@ -196,41 +195,40 @@ export default function WeatherPage() {
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">{weatherData.current.temperature}°C</div>
-                    <p className="text-muted-foreground">{weatherData.current.condition}</p>
+                    <div className="text-4xl font-bold text-blue-600 mb-2">{weatherData.current.temperature}°C</div>
+                    <p className="text-muted-foreground font-medium">{weatherData.current.condition}</p>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Droplets className="h-4 w-4 text-blue-500" />
-                      <span className="text-sm">Humidity: {weatherData.current.humidity}%</span>
+                      <span className="text-sm font-medium">Humidity: {weatherData.current.humidity}%</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Wind className="h-4 w-4 text-gray-500" />
-                      <span className="text-sm">Wind: {weatherData.current.windSpeed} km/h</span>
+                      <span className="text-sm font-medium">Wind: {weatherData.current.windSpeed} km/h</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Compass className="h-4 w-4 text-purple-500" />
-                      <span className="text-sm">Pressure: {weatherData.current.pressure} hPa</span>
+                      <span className="text-sm font-medium">Pressure: {weatherData.current.pressure} hPa</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Eye className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">Visibility: {weatherData.current.visibility} km</span>
+                      <span className="text-sm font-medium">Visibility: {weatherData.current.visibility} km</span>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* UV Index Card */}
-            <Card>
+            <Card className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950 dark:to-amber-950 border-2 border-orange-100 dark:border-orange-800 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-lg">UV Index</CardTitle>
+                <CardTitle className="text-lg text-orange-700 dark:text-orange-400">UV Index</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-orange-500 mb-2">{weatherData.current.uvIndex}</div>
+                  <div className="text-3xl font-bold text-orange-600 mb-2">{weatherData.current.uvIndex}</div>
                   <Progress value={weatherData.current.uvIndex * 10} className="mb-2" />
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground font-medium">
                     {weatherData.current.uvIndex <= 2
                       ? "Low"
                       : weatherData.current.uvIndex <= 5
@@ -248,21 +246,24 @@ export default function WeatherPage() {
         <TabsContent value="forecast" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {weatherData.forecast.map((day, index) => (
-              <Card key={index} className="text-center">
+              <Card
+                key={index}
+                className="text-center bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-2 border-green-100 dark:border-green-800 hover:shadow-lg transition-shadow"
+              >
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">{day.date}</CardTitle>
+                  <CardTitle className="text-sm font-bold text-green-700 dark:text-green-400">{day.date}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {getWeatherIcon(day.condition)}
                   <div>
-                    <div className="text-lg font-bold">{day.high}°</div>
-                    <div className="text-sm text-muted-foreground">{day.low}°</div>
+                    <div className="text-lg font-bold text-green-600">{day.high}°</div>
+                    <div className="text-sm text-muted-foreground font-medium">{day.low}°</div>
                   </div>
                   <div className="flex items-center justify-center gap-1">
                     <Droplets className="h-3 w-3 text-blue-500" />
-                    <span className="text-xs">{day.precipitation}%</span>
+                    <span className="text-xs font-medium">{day.precipitation}%</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{day.condition}</p>
+                  <p className="text-xs text-muted-foreground font-medium">{day.condition}</p>
                 </CardContent>
               </Card>
             ))}

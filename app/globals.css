@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to agriculture-themed colors */
+  /* Enhanced agriculture-themed colors with warm accent colors */
   --background: oklch(1 0 0); /* Pure white background */
   --foreground: oklch(0.35 0.02 240); /* Dark gray for text (#475569) */
-  --card: oklch(0.97 0.005 120); /* Light gray for cards (#f1f5f9) */
+  --card: oklch(0.98 0.005 120); /* Lighter card background for better contrast */
   --card-foreground: oklch(0.35 0.15 155); /* Emerald for card text (#059669) */
   --popover: oklch(1 0 0); /* White for popovers */
   --popover-foreground: oklch(0.35 0.02 240); /* Dark gray for popover text */
@@ -17,19 +17,21 @@
   --secondary-foreground: oklch(1 0 0); /* White text on secondary */
   --muted: oklch(0.45 0.02 240); /* Muted gray (#6b7280) */
   --muted-foreground: oklch(0.7 0.01 240); /* Light muted text */
-  --accent: oklch(0.55 0.12 155); /* Accent emerald (#10b981) */
-  --accent-foreground: oklch(1 0 0); /* White text on accent */
+  --accent: oklch(0.75 0.15 85); /* Warm golden yellow accent (#f59e0b) */
+  --accent-foreground: oklch(0.2 0.02 240); /* Dark text on accent */
+  --warm-brown: oklch(0.55 0.12 45); /* Warm brown accent (#a16207) */
+  --warm-brown-foreground: oklch(1 0 0); /* White text on warm brown */
   --destructive: oklch(0.55 0.25 25); /* Red for errors */
   --destructive-foreground: oklch(1 0 0); /* White text on destructive */
-  --border: oklch(0.9 0.005 120); /* Light border (#e5e7eb) */
+  --border: oklch(0.92 0.005 120); /* Slightly darker border for better definition */
   --input: oklch(1 0 0); /* White input background */
   --ring: oklch(0.45 0.15 155 / 0.5); /* Emerald focus ring */
   --chart-1: oklch(0.45 0.15 155); /* Primary emerald for charts */
   --chart-2: oklch(0.55 0.12 155); /* Secondary emerald */
-  --chart-3: oklch(0.45 0.02 240); /* Gray for charts */
-  --chart-4: oklch(0.97 0.005 120); /* Light gray */
+  --chart-3: oklch(0.75 0.15 85); /* Golden yellow */
+  --chart-4: oklch(0.55 0.12 45); /* Warm brown */
   --chart-5: oklch(0.35 0.02 240); /* Dark gray */
-  --radius: 0.5rem;
+  --radius: 0.75rem; /* Slightly larger radius for modern look */
   --sidebar: oklch(0.97 0.005 120); /* Light gray sidebar */
   --sidebar-foreground: oklch(0.35 0.02 240); /* Dark gray sidebar text */
   --sidebar-primary: oklch(0.45 0.15 155); /* Primary emerald */
@@ -38,7 +40,7 @@
   --sidebar-accent-foreground: oklch(1 0 0); /* White text */
   --sidebar-border: oklch(0.9 0.005 120); /* Light border */
   --sidebar-ring: oklch(0.45 0.15 155 / 0.5); /* Emerald focus ring */
-  --font-inter: "Inter", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
 }
 
@@ -56,8 +58,10 @@
   --secondary-foreground: oklch(0.95 0.005 120); /* Light text */
   --muted: oklch(0.25 0.05 155); /* Dark muted */
   --muted-foreground: oklch(0.7 0.02 155); /* Muted text */
-  --accent: oklch(0.25 0.05 155); /* Dark accent */
-  --accent-foreground: oklch(0.95 0.005 120); /* Light accent text */
+  --accent: oklch(0.65 0.12 85); /* Darker golden yellow for dark mode */
+  --accent-foreground: oklch(0.1 0.02 155); /* Dark text on accent */
+  --warm-brown: oklch(0.45 0.1 45); /* Darker warm brown for dark mode */
+  --warm-brown-foreground: oklch(0.95 0.005 120); /* Light text on warm brown */
   --destructive: oklch(0.45 0.2 25); /* Dark red */
   --destructive-foreground: oklch(0.9 0.1 25); /* Light red text */
   --border: oklch(0.25 0.05 155); /* Dark border */
@@ -65,8 +69,8 @@
   --ring: oklch(0.55 0.12 155 / 0.5); /* Light emerald ring */
   --chart-1: oklch(0.55 0.12 155); /* Light emerald */
   --chart-2: oklch(0.65 0.1 155); /* Lighter emerald */
-  --chart-3: oklch(0.7 0.02 155); /* Light gray */
-  --chart-4: oklch(0.45 0.08 155); /* Medium emerald */
+  --chart-3: oklch(0.65 0.12 85); /* Golden yellow */
+  --chart-4: oklch(0.45 0.1 45); /* Warm brown */
   --chart-5: oklch(0.35 0.06 155); /* Dark emerald */
   --sidebar: oklch(0.12 0.02 155); /* Dark sidebar */
   --sidebar-foreground: oklch(0.95 0.005 120); /* Light sidebar text */
@@ -79,8 +83,8 @@
 }
 
 @theme inline {
-  /* Updated font variables to match new Inter and JetBrains Mono fonts */
-  --font-sans: var(--font-inter);
+  /* Updated font variables to use Poppins instead of Inter */
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-jetbrains-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -96,6 +100,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-warm-brown: var(--warm-brown);
+  --color-warm-brown-foreground: var(--warm-brown-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -129,7 +135,7 @@
   }
 }
 
-/* Added agriculture-specific animations */
+/* Enhanced agriculture-specific animations with smoother transitions */
 @keyframes grow {
   0% {
     transform: scale(1);
@@ -145,7 +151,7 @@
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   100% {
     opacity: 1;
@@ -159,7 +165,26 @@
     box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(5, 150, 105, 0);
+    box-shadow: 0 0 0 15px rgba(5, 150, 105, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
@@ -168,9 +193,42 @@
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .animate-pulse-green {
   animation: pulse-green 2s infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom utility classes for enhanced design */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.section-divider {
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  height: 1px;
+  margin: 3rem 0;
 }

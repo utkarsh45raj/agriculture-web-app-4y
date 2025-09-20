@@ -28,9 +28,9 @@ export function LanguageSwitcher({ onLanguageChange }: LanguageSwitcherProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2 bg-transparent">
+        <Button variant="ghost" size="icon" className="h-9 w-9">
           <Globe className="h-4 w-4" />
-          {languages[currentLang]}
+          <span className="sr-only">Change language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">

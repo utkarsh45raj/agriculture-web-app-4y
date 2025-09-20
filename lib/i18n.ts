@@ -13,59 +13,7 @@ export const languages = {
 
 export type Language = keyof typeof languages
 
-type TranslationKeys =
-  | "home"
-  | "chatbot"
-  | "weather"
-  | "cropAdvisory"
-  | "soilHealth"
-  | "pestDetection"
-  | "marketPrices"
-  | "heroTitle"
-  | "heroSubtitle"
-  | "startFreeAdvisory"
-  | "cropAdvisoryTitle"
-  | "cropAdvisoryDesc"
-  | "pestDetectionTitle"
-  | "pestDetectionDesc"
-  | "weatherAlertsTitle"
-  | "weatherAlertsDesc"
-  | "marketPricesTitle"
-  | "marketPricesDesc"
-  | "soilHealthDesc"
-  | "getStarted"
-  | "learnMore"
-  | "tryNow"
-  | "viewMore"
-  | "submit"
-  | "cancel"
-  | "save"
-  | "loading"
-  | "error"
-  | "success"
-  | "chatbotTitle"
-  | "chatbotPlaceholder"
-  | "voiceInput"
-  | "sendMessage"
-  | "weatherTitle"
-  | "currentWeather"
-  | "forecast"
-  | "alerts"
-  | "temperature"
-  | "humidity"
-  | "rainfall"
-  | "cropAdvisoryPageTitle"
-  | "selectCrop"
-  | "selectSeason"
-  | "getRecommendations"
-  | "sowingTips"
-  | "fertilizers"
-  | "irrigation"
-  | "harvesting";
-
-type TranslationsType = Record<Language, Partial<Record<TranslationKeys, string>>>;
-
-export const translations: TranslationsType = {
+export const translations = {
   en: {
     // Navigation
     home: "Home",
@@ -90,7 +38,6 @@ export const translations: TranslationsType = {
     weatherAlertsDesc: "Stay ahead of the weather",
     marketPricesTitle: "Market Prices",
     marketPricesDesc: "Know the best time to sell",
-    soilHealthDesc: "Monitor and improve your soil quality",
 
     // Common
     getStarted: "Get Started",
@@ -129,13 +76,6 @@ export const translations: TranslationsType = {
     irrigation: "Irrigation",
     harvesting: "Harvesting",
   },
-  ta: {},
-  kn: {},
-  ml: {},
-  gu: {},
-  mr: {},
-  pa: {},
-  bn: {},
   hi: {
     // Navigation
     home: "होम",
@@ -161,7 +101,6 @@ export const translations: TranslationsType = {
     marketPricesTitle: "बाजार भाव",
     marketPricesDesc: "बेचने का सबसे अच्छा समय जानें",
 
-  soilHealthDesc: "मिट्टी की गुणवत्ता की निगरानी करें और सुधारें",
     // Common
     getStarted: "शुरू करें",
     learnMore: "और जानें",
@@ -225,7 +164,6 @@ export const translations: TranslationsType = {
     marketPricesDesc: "అమ్మడానికి ఉత్తమ సమయాన్ని తెలుసుకోండి",
 
     // Common
-  soilHealthDesc: "మీ మట్టి నాణ్యతను పర్యవేక్షించండి మరియు మెరుగుపరచండి",
     getStarted: "ప్రారంభించండి",
     learnMore: "మరింత తెలుసుకోండి",
     tryNow: "ఇప్పుడే ప్రయత్నించండి",

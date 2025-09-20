@@ -1,103 +1,50 @@
-
 "use client"
 
-import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { MessageCircle, Cloud, Sprout, ArrowRight, Users, TrendingUp, Shield, Target } from "lucide-react"
+import {
+  MessageCircle,
+  Cloud,
+  Sprout,
+  ArrowRight,
+  Users,
+  Shield,
+  Target,
+  Sparkles,
+  Award,
+  BarChart3,
+} from "lucide-react"
 import { useTranslation } from "@/hooks/use-translation"
 import Link from "next/link"
-
-// PhotoCarousel component for the Social Proof section
-const carouselData = [
-  {
-    src: "/bimayojna.png",
-    alt: "PM bima yojna",
-    desc: "To provide accident insurance cover to the deprived population at an extremely affordable premium"
-  },
-  {
-    src: "/dhan.png",
-    alt: "dhan-dhanya krishi scheme",
-    desc: "comprehensive farm programme designed to enhance productivity, promote sustainable practices, and improve livelihoods."
-  },
-  {
-    src: "/aasha.png",
-    alt: "aanya data scheme",
-    desc: "in support of farmers and to provide them with financial assistance for their agricultural needs."
-  },
-  {
-    src: "/nmoop.png",
-    alt: "nmoop scheme",
-    desc: "aim to boost the production of oilseeds in the country, farmers growing oilseeds are benefited by government."
-  },
-];
-
-function PhotoCarousel() {
-  const [index, setIndex] = useState(0);
-
-  // Auto slide every 3s
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % carouselData.length);
-    }, 3000); // changed from 5000 to 3000
-    return () => clearInterval(interval);
-  }, []);
-
-  const { src, alt, desc } = carouselData[index];
-
-  return (
-    <div className="flex flex-col items-center justify-center mb-8 relative">
-      {/* Image + Description */}
-      <img
-        src={src}
-        alt={alt}
-        className="w-[500px] h-[350px] max-w-full object-cover rounded-xl shadow-lg mb-3 border border-green-200"
-        style={{ background: "#e6f4ea" }}
-      />
-      <p className="text-base text-muted-foreground text-center max-w-md">{desc}</p>
-
-      {/* Dots Indicator */}
-      <div className="flex gap-3 mt-4">
-        {carouselData.map((_, i) => (
-          <span
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`h-4 w-4 rounded-full cursor-pointer transition ${
-              i === index ? "bg-green-700" : "bg-gray-300"
-            }`}
-          ></span>
-        ))}
-      </div>
-    </div>
-  );
-}
+import GovernmentSchemesCarousel from "@/components/government-schemes-carousel"
 
 export default function HomePage() {
   const { t } = useTranslation()
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Hero Section with Background Image */}
       <div
-        className="text-center mb-12 animate-fade-in-up relative py-20 rounded-lg overflow-hidden bg-gradient-to-r from-green-800 to-green-600"
+        className="text-center mb-16 animate-fade-in-up relative py-20 rounded-2xl overflow-hidden bg-gradient-to-br from-green-800 via-green-700 to-green-600"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/lush-green-agricultural-fields-with-modern-farming.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.7)), url('/lush-green-agricultural-fields-with-modern-farming.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="relative z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 text-balance drop-shadow-lg">
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 text-balance drop-shadow-2xl leading-tight">
             {t("heroTitle")}
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto text-pretty drop-shadow-md">{t("heroSubtitle")}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <p className="text-xl md:text-2xl text-white/95 mb-10 max-w-3xl mx-auto text-pretty drop-shadow-lg font-medium leading-relaxed">
+            {t("heroSubtitle")}
+          </p>
+          <div className="flex justify-center items-center">
             <Link href="/chatbot">
               <Button
                 size="lg"
-                className="animate-pulse-green bg-white text-green-800 hover:bg-white/90 font-semibold shadow-lg"
+                className="animate-pulse-green bg-gradient-to-r from-yellow-400 to-yellow-500 text-green-900 hover:from-yellow-300 hover:to-yellow-400 font-bold text-lg px-8 py-4 shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-yellow-300"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
+                <Sparkles className="mr-3 h-6 w-6" />
                 {t("startFreeAdvisory")}
               </Button>
             </Link>
@@ -106,255 +53,280 @@ export default function HomePage() {
       </div>
 
       {/* Our Vision Section */}
-      
-        <div className="text-center mb-12 animate-fade-in-up">
-          <h2 className="text-3xl font-bold text-primary mb-6">Our Vision</h2>
-          <div className="max-w-4xl mx-auto">
-            <p className="text-lg text-muted-foreground mb-8 text-pretty">
-              To empower farmers with cutting-edge AI technology, providing personalized insights and recommendations that
-              transform traditional farming into smart, sustainable agriculture. We envision a future where every farmer
-              has access to intelligent farming solutions that maximize yield, minimize risk, and promote environmental
-              sustainability.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Target className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Smart Farming</h3>
-                <p className="text-sm text-muted-foreground text-center">
-                  Leveraging AI to make farming more efficient and productive
-                </p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Users className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Farmer Empowerment</h3>
-                <p className="text-sm text-muted-foreground text-center">
-                  Providing tools and knowledge to help farmers succeed
-                </p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Sprout className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-semibold mb-2">Sustainable Growth</h3>
-                <p className="text-sm text-muted-foreground text-center">
-                  Promoting eco-friendly practices for long-term sustainability
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      {/* Key Features Section */}
       <div className="text-center mb-12 animate-fade-in-up">
-        <div
-          className="border-2 rounded-xl p-6 mb-12"
-          style={{  backgroundColor: '#ECFDF5' }}
-        >
-          <h2 className="text-3xl font-bold text-primary mb-6">Key Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-             
-        <Link href="/chatbot">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up cursor-pointer h-full">
-            <CardHeader className="text-center">
-              <MessageCircle className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">AI Chatbot</CardTitle>
-              <CardDescription>Get instant farming advice with AI</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-8 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+            Our Vision
+          </h2>
+          <p className="text-xl text-muted-foreground mb-12 max-w-4xl mx-auto text-pretty leading-relaxed">
+            To empower farmers with cutting-edge AI technology, providing personalized insights and recommendations that
+            transform traditional farming into smart, sustainable agriculture. We envision a future where every farmer
+            has access to intelligent farming solutions that maximize yield, minimize risk, and promote environmental
+            sustainability.
+          </p>
 
-        <Link href="/weather">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up cursor-pointer h-full">
-            <CardHeader className="text-center">
-              <Cloud className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">{t("weatherAlertsTitle")}</CardTitle>
-              <CardDescription>{t("weatherAlertsDesc")}</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 card-hover">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-6 animate-float">
+                <Target className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-primary">Smart Farming</h3>
+              <p className="text-muted-foreground text-center leading-relaxed">
+                Leveraging AI to make farming more efficient and productive with data-driven insights
+              </p>
+            </div>
 
-        <Link href="/crop-advisory">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up cursor-pointer h-full">
-            <CardHeader className="text-center">
-              <TrendingUp className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">{t("cropAdvisoryTitle")}</CardTitle>
-              <CardDescription>{t("cropAdvisoryDesc")}</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950 dark:to-amber-950 card-hover">
+              <div
+                className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mb-6 animate-float"
+                style={{ animationDelay: "0.5s" }}
+              >
+                <Users className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-yellow-700 dark:text-yellow-400">Farmer Empowerment</h3>
+              <p className="text-muted-foreground text-center leading-relaxed">
+                Providing comprehensive tools and knowledge to help farmers succeed in modern agriculture
+              </p>
+            </div>
 
-
-        <Link href="/soil-health">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up cursor-pointer h-full">
-            <CardHeader className="text-center">
-              <Shield className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">{t("soilHealth")}</CardTitle>
-              <CardDescription>{t("soilHealthDesc")}</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
-
-        <Link href="/pest-detection">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up cursor-pointer h-full">
-            <CardHeader className="text-center">
-              <Shield className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">{t("pestDetectionTitle")}</CardTitle>
-              <CardDescription>{t("pestDetectionDesc")}</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
-
-        <Link href="/market-prices">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up cursor-pointer h-full">
-            <CardHeader className="text-center">
-              <TrendingUp className="h-12 w-12 text-primary mx-auto mb-2" />
-              <CardTitle className="text-lg">{t("marketPricesTitle")}</CardTitle>
-              <CardDescription>{t("marketPricesDesc")}</CardDescription>
-            </CardHeader>
-          </Card>
-        </Link>
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 card-hover">
+              <div
+                className="w-20 h-20 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center mb-6 animate-float"
+                style={{ animationDelay: "1s" }}
+              >
+                <Sprout className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-amber-700 dark:text-amber-400">Sustainable Growth</h3>
+              <p className="text-muted-foreground text-center leading-relaxed">
+                Promoting eco-friendly practices for long-term environmental sustainability
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      {/*
-      Detailed Feature Cards - Updated to match pest detection style
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up">
-          <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageCircle className="h-8 w-8 text-primary" />
-            </div>
-            <CardTitle>AI Chatbot</CardTitle>
-            <CardDescription>Get instant answers to your farming questions with voice and text support</CardDescription>
-          </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              Our AI assistant provides personalized farming advice, crop recommendations, and answers to your
-              agricultural questions 24/7 in multiple languages.
-            </p>
-            <Link href="/chatbot">
-              <Button variant="outline" size="sm">
-                {t("tryNow")} <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
 
-        <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up">
-          <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Cloud className="h-8 w-8 text-primary" />
-            </div>
-            <CardTitle>Weather Insights</CardTitle>
-            <CardDescription>Real-time weather data and predictive insights for farming</CardDescription>
-          </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              Stay informed with accurate weather forecasts, rainfall predictions, and AI-powered insights to optimize
-              your farming activities and protect your crops.
-            </p>
-            <Link href="/weather">
-              <Button variant="outline" size="sm">
-                {t("viewMore")} <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
+      <div className="section-divider"></div>
 
-        <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in-up">
-          <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Sprout className="h-8 w-8 text-primary" />
-            </div>
-            <CardTitle>Smart Crop Advisory</CardTitle>
-            <CardDescription>Personalized crop recommendations and growing guides</CardDescription>
-          </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              Receive data-driven crop suggestions based on your location, soil conditions, weather patterns, and market
-              trends for maximum profitability.
-            </p>
-            <Link href="/crop-advisory">
-              <Button variant="outline" size="sm">
-                {t("getStarted")} <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </div>
-      */}
+      <div className="mb-20">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+          Key Features
+        </h2>
+        <p className="text-xl text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
+          Discover our comprehensive suite of AI-powered tools designed to revolutionize your farming experience
+        </p>
 
-      {/* Social Proof Section */}
-      {/*<div className="bg-card rounded-lg p-8 mb-12 animate-fade-in-up">
-        <h2 className="text-2xl font-bold text-center mb-8 text-card-foreground">Trusted by Farmers Across India</h2>*/}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <Link href="/chatbot">
+            <Card className="card-hover cursor-pointer h-full bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-2 border-green-100 dark:border-green-800 hover:border-green-300 dark:hover:border-green-600 group">
+              <CardHeader className="text-center pb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <MessageCircle className="h-10 w-10 text-white" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-primary">AI Chatbot</CardTitle>
+                <CardDescription className="text-base">
+                  Get instant answers to your farming questions with voice and text support
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Our AI assistant provides personalized farming advice, crop recommendations, and answers to your
+                  agricultural questions 24/7 in multiple languages.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group-hover:bg-primary group-hover:text-white transition-colors bg-transparent"
+                >
+                  {t("tryNow")} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
 
-        {/* Government Schemes Section Heading */}
-        <div className="text-center mb-12 animate-fade-in-up">
-          <h2 className="text-3xl font-bold text-primary mb-6">Government schemes</h2>
+          <Link href="/weather">
+            <Card className="card-hover cursor-pointer h-full bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950 dark:to-sky-950 border-2 border-blue-100 dark:border-blue-800 hover:border-blue-300 dark:hover:border-blue-600 group">
+              <CardHeader className="text-center pb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Cloud className="h-10 w-10 text-white" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-blue-700 dark:text-blue-400">Weather Insights</CardTitle>
+                <CardDescription className="text-base">
+                  Real-time weather data and predictive insights for farming
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Stay informed with accurate weather forecasts, rainfall predictions, and AI-powered insights to
+                  optimize your farming activities and protect your crops.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group-hover:bg-blue-600 group-hover:text-white transition-colors bg-transparent"
+                >
+                  {t("viewMore")} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/crop-advisory">
+            <Card className="card-hover cursor-pointer h-full bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950 dark:to-amber-950 border-2 border-yellow-100 dark:border-yellow-800 hover:border-yellow-300 dark:hover:border-yellow-600 group">
+              <CardHeader className="text-center pb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Sprout className="h-10 w-10 text-white" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-yellow-700 dark:text-yellow-400">
+                  Smart Crop Advisory
+                </CardTitle>
+                <CardDescription className="text-base">
+                  Personalized crop recommendations and growing guides
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Receive data-driven crop suggestions based on your location, soil conditions, weather patterns, and
+                  market trends for maximum profitability.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group-hover:bg-yellow-600 group-hover:text-white transition-colors bg-transparent"
+                >
+                  {t("getStarted")} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/pest-detection">
+            <Card className="card-hover cursor-pointer h-full bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-950 dark:to-rose-950 border-2 border-red-100 dark:border-red-800 hover:border-red-300 dark:hover:border-red-600 group">
+              <CardHeader className="text-center pb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Shield className="h-10 w-10 text-white" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-red-700 dark:text-red-400">
+                  {t("pestDetectionTitle")}
+                </CardTitle>
+                <CardDescription className="text-base">{t("pestDetectionDesc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Upload photos of your crops to instantly identify pests, diseases, and nutrient deficiencies with
+                  AI-powered analysis.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group-hover:bg-red-600 group-hover:text-white transition-colors bg-transparent"
+                >
+                  {t("tryNow")} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/soil-health">
+            <Card className="card-hover cursor-pointer h-full bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 border-2 border-amber-100 dark:border-amber-800 hover:border-amber-300 dark:hover:border-amber-600 group">
+              <CardHeader className="text-center pb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-600 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Award className="h-16 w-16 text-yellow-600 mx-auto mb-3" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-primary">Soil Health</CardTitle>
+                <CardDescription className="text-base">
+                  Monitor and improve your soil quality with expert guidance
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Get comprehensive soil analysis, pH monitoring, and personalized recommendations to maintain optimal
+                  soil health.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group-hover:bg-amber-600 group-hover:text-white transition-colors bg-transparent"
+                >
+                  {t("learnMore")} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/market-prices">
+            <Card className="card-hover cursor-pointer h-full bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950 dark:to-violet-950 border-2 border-purple-100 dark:border-purple-800 hover:border-purple-300 dark:hover:border-purple-600 group">
+              <CardHeader className="text-center pb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart3 className="h-10 w-10 text-white" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-purple-700 dark:text-purple-400">
+                  {t("marketPricesTitle")}
+                </CardTitle>
+                <CardDescription className="text-base">{t("marketPricesDesc")}</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Stay updated with real-time market prices, trends, and optimal selling times to maximize your profits.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="group-hover:bg-purple-600 group-hover:text-white transition-colors bg-transparent"
+                >
+                  {t("marketPricesTitle")} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
-        {/* Photo carousel with 1-line description */}
-        <PhotoCarousel />
-        {/*<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 mt-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">50,000+</div>
-            
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">15+</div>
-            <p className="text-muted-foreground">States Covered</p>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">25%</div>
-            <p className="text-muted-foreground">Average Yield Increase</p>
-          </div>
-        </div>*/}
+      </div>
+
+      {/* Government Schemes Section */}
+      <GovernmentSchemesCarousel />
 
       {/* Footer Section with Quick Access Tools */}
-      <footer className="bg-card rounded-lg p-8 animate-fade-in-up">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <footer className="bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-900 dark:to-slate-900 rounded-3xl p-12 animate-fade-in-up border border-gray-100 dark:border-gray-800">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Quick Access Tools */}
           <div>
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Quick Access Tools</h2>
-            <div className="grid grid-cols-2 gap-4">
+            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+              Quick Access Tools
+            </h2>
+            <div className="grid grid-cols-2 gap-6">
               <Link href="/chatbot">
                 <Button
                   variant="outline"
-                  className="h-20 flex-col space-y-2 hover:bg-primary hover:text-primary-foreground transition-colors bg-transparent w-full"
+                  className="h-24 flex-col space-y-3 hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-white dark:bg-gray-800 border-2 hover:border-primary w-full shadow-sm hover:shadow-lg transform hover:scale-105"
                 >
-                  <MessageCircle className="h-6 w-6" />
-                  <span>AI Chatbot</span>
+                  <MessageCircle className="h-8 w-8" />
+                  <span className="font-semibold">AI Chatbot</span>
                 </Button>
               </Link>
               <Link href="/weather">
                 <Button
                   variant="outline"
-                  className="h-20 flex-col space-y-2 hover:bg-primary hover:text-primary-foreground transition-colors bg-transparent w-full"
+                  className="h-24 flex-col space-y-3 hover:bg-blue-600 hover:text-white transition-all duration-300 bg-white dark:bg-gray-800 border-2 hover:border-blue-600 w-full shadow-sm hover:shadow-lg transform hover:scale-105"
                 >
-                  <Cloud className="h-6 w-6" />
-                  <span>Weather</span>
+                  <Cloud className="h-8 w-8" />
+                  <span className="font-semibold">Weather</span>
                 </Button>
               </Link>
               <Link href="/crop-advisory">
                 <Button
                   variant="outline"
-                  className="h-20 flex-col space-y-2 hover:bg-primary hover:text-primary-foreground transition-colors bg-transparent w-full"
+                  className="h-24 flex-col space-y-3 hover:bg-yellow-600 hover:text-white transition-all duration-300 bg-white dark:bg-gray-800 border-2 hover:border-yellow-600 w-full shadow-sm hover:shadow-lg transform hover:scale-105"
                 >
-                  <Sprout className="h-6 w-6" />
-                  <span>Crop Guide</span>
+                  <Sprout className="h-8 w-8" />
+                  <span className="font-semibold">Crop Guide</span>
                 </Button>
               </Link>
               <Link href="/soil-health">
                 <Button
                   variant="outline"
-                  className="h-20 flex-col space-y-2 hover:bg-primary hover:text-primary-foreground transition-colors bg-transparent w-full"
+                  className="h-24 flex-col space-y-3 hover:bg-amber-600 hover:text-white transition-all duration-300 bg-white dark:bg-gray-800 border-2 hover:border-amber-600 w-full shadow-sm hover:shadow-lg transform hover:scale-105"
                 >
-                  <Shield className="h-6 w-6" />
-                  <span>Soil Health</span>
+                  <Shield className="h-8 w-8" />
+                  <span className="font-semibold">Soil Health</span>
                 </Button>
               </Link>
             </div>
@@ -362,24 +334,35 @@ export default function HomePage() {
 
           {/* Footer Information */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-card-foreground">Kisan Mitra</h3>
-            <p className="text-muted-foreground mb-4">
+            <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+              Kisan Mitra
+            </h3>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               Empowering farmers with AI-powered insights for better yields and sustainable farming practices.
             </p>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>📧 support@kisanmitra.com</p>
-              <p>📞 1800-123-4567</p>
-              <p>🌐 Available in 10+ Indian languages</p>
+            <div className="space-y-4 text-muted-foreground">
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">📧</span>
+                <span className="font-medium">support@kisanmitra.com</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">📞</span>
+                <span className="font-medium">1800-123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <span className="text-2xl">🌐</span>
+                <span className="font-medium">Available in 10+ Indian languages</span>
+              </div>
             </div>
           </div>
         </div>
 
-
-        <div className="border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Kisan Mitra. All rights reserved. | Made with ❤️ for Indian Farmers</p>
+        <div className="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center">
+          <p className="text-muted-foreground font-medium">
+            &copy; 2024 Kisan Mitra. All rights reserved. | Made with ❤️ for Indian Farmers
+          </p>
         </div>
       </footer>
-      </div>
-    
-    );
+    </div>
+  )
 }

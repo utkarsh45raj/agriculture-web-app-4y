@@ -155,27 +155,27 @@ export default function ChatbotPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
-          <MessageCircle className="h-8 w-8" />
+    <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <div className="text-center mb-12 animate-fade-in-up">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent flex items-center justify-center gap-3">
+          <MessageCircle className="h-10 w-10 text-green-600" />
           {t("chatbotTitle")}
         </h1>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
           Ask me anything about farming, crops, weather, pests, or market prices. I support both text and voice input!
         </p>
       </div>
 
-      <Card className="h-[600px] flex flex-col">
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center justify-between">
+      <Card className="h-[75vh] min-h-[500px] max-h-[700px] flex flex-col bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-2 border-green-100 dark:border-green-800 shadow-2xl">
+        <CardHeader className="pb-4 bg-gradient-to-r from-green-600 to-green-800 text-white rounded-t-lg">
+          <CardTitle className="flex items-center justify-between text-xl font-bold">
             <span>Chat Assistant</span>
             <div className="flex gap-2">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
                 onClick={toggleSpeaking}
-                className={isSpeaking ? "bg-destructive text-destructive-foreground" : ""}
+                className={`text-white hover:bg-white/20 ${isSpeaking ? "bg-red-500/20" : ""}`}
               >
                 {isSpeaking ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
               </Button>
@@ -183,32 +183,36 @@ export default function ChatbotPage() {
           </CardTitle>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col gap-4">
-          <ScrollArea className="flex-1 pr-4" ref={scrollAreaRef}>
-            <div className="space-y-4">
+        <CardContent className="flex-1 flex flex-col gap-4 p-6 overflow-hidden">
+          <ScrollArea className="flex-1 pr-2 overflow-y-auto" ref={scrollAreaRef}>
+            <div className="space-y-4 pb-2">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex gap-3 ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   {message.sender === "bot" && (
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                      <Bot className="h-4 w-4 text-primary-foreground" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <Bot className="h-5 w-5 text-white" />
                     </div>
                   )}
 
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg ${
-                      message.sender === "user" ? "bg-primary text-primary-foreground ml-auto" : "bg-muted"
+                    className={`max-w-[80%] p-4 rounded-2xl shadow-sm break-words ${
+                      message.sender === "user"
+                        ? "bg-gradient-to-r from-green-600 to-green-700 text-white ml-auto shadow-lg"
+                        : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
                     }`}
                   >
-                    <p className="text-sm">{message.text}</p>
-                    <span className="text-xs opacity-70 mt-1 block">{message.timestamp.toLocaleTimeString()}</span>
+                    <p className="text-sm font-medium leading-relaxed">{message.text}</p>
+                    <span className="text-xs opacity-70 mt-2 block font-normal">
+                      {message.timestamp.toLocaleTimeString()}
+                    </span>
                   </div>
 
                   {message.sender === "user" && (
-                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                      <User className="h-4 w-4 text-secondary-foreground" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <User className="h-5 w-5 text-white" />
                     </div>
                   )}
                 </div>
@@ -216,18 +220,18 @@ export default function ChatbotPage() {
 
               {isLoading && (
                 <div className="flex gap-3 justify-start">
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                    <Bot className="h-4 w-4 text-primary-foreground" />
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <Bot className="h-5 w-5 text-white" />
                   </div>
-                  <div className="bg-muted p-3 rounded-lg">
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
                     <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-green-600 rounded-full animate-bounce"></div>
                       <div
-                        className="w-2 h-2 bg-primary rounded-full animate-bounce"
+                        className="w-2 h-2 bg-green-600 rounded-full animate-bounce"
                         style={{ animationDelay: "0.1s" }}
                       ></div>
                       <div
-                        className="w-2 h-2 bg-primary rounded-full animate-bounce"
+                        className="w-2 h-2 bg-green-600 rounded-full animate-bounce"
                         style={{ animationDelay: "0.2s" }}
                       ></div>
                     </div>
@@ -237,31 +241,35 @@ export default function ChatbotPage() {
             </div>
           </ScrollArea>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
             <div className="flex-1 flex gap-2">
               <Input
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder={t("chatbotPlaceholder")}
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                className="flex-1"
+                className="flex-1 font-medium bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 focus:border-green-500 dark:focus:border-green-400"
               />
               <Button
                 variant="outline"
                 size="icon"
                 onClick={toggleListening}
-                className={isListening ? "bg-destructive text-destructive-foreground animate-pulse" : ""}
+                className={`border-2 ${isListening ? "bg-red-500 text-white animate-pulse border-red-500" : "hover:bg-green-50 dark:hover:bg-green-950 border-gray-200 dark:border-gray-700"}`}
               >
                 {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
               </Button>
             </div>
-            <Button onClick={handleSendMessage} disabled={!inputText.trim() || isLoading}>
+            <Button
+              onClick={handleSendMessage}
+              disabled={!inputText.trim() || isLoading}
+              className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 border-2 border-green-500 font-medium"
+            >
               <Send className="h-4 w-4" />
             </Button>
           </div>
 
-          <div className="text-xs text-muted-foreground text-center">
-            Tip: Click the microphone to use voice input, or type your questions about farming!
+          <div className="text-xs text-muted-foreground text-center font-medium">
+            💡 Tip: Click the microphone to use voice input, or type your questions about farming!
           </div>
         </CardContent>
       </Card>

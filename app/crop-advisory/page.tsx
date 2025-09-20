@@ -201,27 +201,26 @@ export default function CropAdvisoryPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
-          <Sprout className="h-8 w-8" />
+      <div className="text-center mb-12 animate-fade-in-up">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent flex items-center justify-center gap-3">
+          <Sprout className="h-10 w-10 text-green-600" />
           {t("cropAdvisoryPageTitle")}
         </h1>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
           Get personalized crop recommendations based on your location, season, and soil conditions
         </p>
       </div>
 
-      {/* Selection Form */}
-      <Card className="mb-8">
+      <Card className="mb-8 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-2 border-green-100 dark:border-green-800 shadow-lg">
         <CardHeader>
-          <CardTitle>Get Crop Recommendations</CardTitle>
+          <CardTitle className="text-green-700 dark:text-green-400">Get Crop Recommendations</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div>
-              <label className="text-sm font-medium mb-2 block">Location</label>
+              <label className="text-sm font-bold mb-2 block text-green-700 dark:text-green-400">Location</label>
               <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-                <SelectTrigger>
+                <SelectTrigger className="border-2 border-green-200 dark:border-green-700 focus:border-green-500">
                   <SelectValue placeholder="Select location" />
                 </SelectTrigger>
                 <SelectContent>
@@ -235,9 +234,11 @@ export default function CropAdvisoryPage() {
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-2 block">{t("selectSeason")}</label>
+              <label className="text-sm font-bold mb-2 block text-green-700 dark:text-green-400">
+                {t("selectSeason")}
+              </label>
               <Select value={selectedSeason} onValueChange={setSelectedSeason}>
-                <SelectTrigger>
+                <SelectTrigger className="border-2 border-green-200 dark:border-green-700 focus:border-green-500">
                   <SelectValue placeholder="Select season" />
                 </SelectTrigger>
                 <SelectContent>
@@ -251,9 +252,11 @@ export default function CropAdvisoryPage() {
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-2 block">{t("selectCrop")} (Optional)</label>
+              <label className="text-sm font-bold mb-2 block text-green-700 dark:text-green-400">
+                {t("selectCrop")} (Optional)
+              </label>
               <Select value={selectedCrop} onValueChange={setSelectedCrop}>
-                <SelectTrigger>
+                <SelectTrigger className="border-2 border-green-200 dark:border-green-700 focus:border-green-500">
                   <SelectValue placeholder="Select crop" />
                 </SelectTrigger>
                 <SelectContent>
@@ -270,7 +273,7 @@ export default function CropAdvisoryPage() {
           <Button
             onClick={getRecommendations}
             disabled={!selectedLocation || !selectedSeason || loading}
-            className="w-full md:w-auto"
+            className="w-full md:w-auto bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 font-bold text-lg px-8 py-3"
           >
             {loading ? "Getting Recommendations..." : t("getRecommendations")}
           </Button>
@@ -280,7 +283,7 @@ export default function CropAdvisoryPage() {
       {loading && (
         <div className="text-center py-8">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Analyzing soil, weather, and market conditions...</p>
+          <p className="text-muted-foreground font-medium">Analyzing soil, weather, and market conditions...</p>
         </div>
       )}
 
@@ -294,20 +297,23 @@ export default function CropAdvisoryPage() {
           <TabsContent value="recommendations" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.map((crop) => (
-                <Card key={crop.id} className="relative">
+                <Card
+                  key={crop.id}
+                  className="relative bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-950 dark:to-amber-950 border-2 border-yellow-100 dark:border-yellow-800 hover:shadow-lg transition-all duration-300 hover:scale-105"
+                >
                   <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
+                    <CardTitle className="flex items-center justify-between text-yellow-700 dark:text-yellow-400">
                       <span>{crop.name}</span>
                       <Badge className={getProfitabilityColor(crop.profitability)}>
                         {crop.profitability.toUpperCase()}
                       </Badge>
                     </CardTitle>
-                    <p className="text-sm text-muted-foreground">{crop.variety}</p>
+                    <p className="text-sm text-muted-foreground font-medium">{crop.variety}</p>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium">Suitability</span>
+                        <span className="text-sm font-bold">Suitability</span>
                         <span className="text-sm font-bold text-primary">{crop.suitability}%</span>
                       </div>
                       <Progress value={crop.suitability} className="h-2" />
@@ -376,15 +382,18 @@ export default function CropAdvisoryPage() {
           <TabsContent value="guidance" className="space-y-6">
             <div className="space-y-6">
               {cropGuidance.map((stage, index) => (
-                <Card key={index}>
+                <Card
+                  key={index}
+                  className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-2 border-green-100 dark:border-green-800 shadow-lg"
+                >
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-700 text-white flex items-center justify-center text-sm font-bold shadow-lg">
                         {index + 1}
                       </div>
                       <div>
-                        <h3>{stage.stage}</h3>
-                        <p className="text-sm text-muted-foreground font-normal flex items-center gap-1">
+                        <h3 className="text-green-700 dark:text-green-400">{stage.stage}</h3>
+                        <p className="text-sm text-muted-foreground font-medium flex items-center gap-1">
                           <Clock className="h-3 w-3" />
                           {stage.timeline}
                         </p>
