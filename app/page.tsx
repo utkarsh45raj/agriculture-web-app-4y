@@ -26,7 +26,7 @@ export default function HomePage() {
       <div
         className="text-center mb-16 animate-fade-in-up relative py-20 rounded-2xl overflow-hidden bg-gradient-to-br from-green-800 via-green-700 to-green-600"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.7)), url('/lush-green-agricultural-fields-with-modern-farming.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.7)), url('/bg-image.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -351,7 +351,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-2xl">🌐</span>
-                <span className="font-medium">Available in 10+ Indian languages</span>
+                <span className="font-medium">Available in regional languages</span>
               </div>
             </div>
           </div>
@@ -359,7 +359,7 @@ export default function HomePage() {
 
         <div className="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center">
           <p className="text-muted-foreground font-medium">
-            &copy; 2024 Kisan Mitra. All rights reserved. | Made with ❤️ for Indian Farmers
+            &copy; 2025 Kisan Mitra. All rights reserved. | Made with ❤️ for Indian Farmers
           </p>
         </div>
       </footer>
